@@ -1,7 +1,4 @@
 #include<stdlib.h>
-#include<stdlib.h>
-#include<signal.h>
-#include<process.h>
 #include<stdio.h>
 
 struct node
@@ -11,7 +8,7 @@ struct node
     /* data */
 };
 
-
+// Adding the nodes to the list
 void addNode(struct node **start,int data,int pos)
 {
     int k=1;
@@ -47,6 +44,7 @@ void addNode(struct node **start,int data,int pos)
 
 }
 
+// Displaying the list
 void display(struct node *start)
 {
     while(start!=NULL)
@@ -57,43 +55,6 @@ void display(struct node *start)
     printf("\n");
 }
 
-
-void delete(struct node **start,int pos)
-{
-    int k=1;
-
-    struct node *temp,*temp1;
-    temp=*start;
-    if(pos < 1 || *start == NULL)
-    {
-        printf("Invalid position or List is empty\n");
-        return;
-    }
-    if(pos == 1)
-    {
-        *start=(*start)->link;
-        free(temp);
-    }
-    else
-    {
-        while(temp!=NULL && k<pos)
-        {
-            temp1=temp;
-            temp=temp->link;
-            k++;
-        }
-        if(temp == NULL)
-        {
-            printf("Out of range position = %d\n",pos);
-            return;
-        }
-        temp1->link=temp->link;
-        free(temp);
-    }
-    
-}
-
-
 int main()
 {
     struct node *start=NULL;
@@ -102,11 +63,6 @@ int main()
     addNode(&start,i,i);
 
     display(start);
-
-    delete(&start,5);
-
-    display(start);
-
 
     return 0;
 }
